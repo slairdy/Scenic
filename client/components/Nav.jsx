@@ -2,10 +2,12 @@ import React from 'react'
 
 function Nav () {
   return (
-    <div>
-      <h2>Nav</h2>
+    <div id="menu">
+      <div id="menuClose">&times;</div>
       <ul>
-        <li>Build your continent list here</li>
+        <li><a href="#">Search</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
       </ul>
     </div>
   )
