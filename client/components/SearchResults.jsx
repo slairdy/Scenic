@@ -25,9 +25,13 @@ function SearchResults (props) {
     .then(features => {
       setFeatures(features)
       const searchquery = searchParams.get("searchquery")
-      const featArr = features.filter((feature)=>{
+      const feats = features.filter((feature)=>{
         return feature.id === parseInt(searchParams.get(feature.name+feature.id))
       })
+      const featArr = feats.map((feat)=>{
+        return feat.id
+      })
+      console.log(featArr)
       return getSearchResults(searchquery,featArr)
     })
     .then(locations => {

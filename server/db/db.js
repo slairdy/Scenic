@@ -50,13 +50,28 @@ function getFeature (id, db = connection) {
 
 //search
 function returnSearch(searchquery,featArr,db = connection){
-  if(featArr.length>0){
-    idArr = featArr.map(featArr.id)
+  if(searchquery.length){
     return db('locations')
+    .join(
+      'location_features',
+      'locations.id',
+      '=',
+      'location_features.location_id'
+      )
+    .select('*','location_features.id as lf_id')
     .where('name', 'like', `%${searchquery}%`)
     .orWhere('descr', 'like', `%${searchquery}%`)
+    .whereIn('feature_id', featArr)
   }else{
-
+    return db('locations')
+    .join(
+      'location_features',
+      'locations.id',
+      '=',
+      'location_features.location_id'
+      )
+    .select('*','location_features.id as lf_id')
+    .whereIn('feature_id', featArr)    
   }
 
 }
