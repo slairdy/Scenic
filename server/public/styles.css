@@ -183,10 +183,15 @@ footer nav a {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  height: 500px;
+}
+#feature .featureImg, #feature .titleBar {
   display: block;
   width: 100%;
-  height: 500px;
   position: relative;
+}
+#feature .featureImg.content, #feature .titleBar {
+  height: 260px;
 }
 #feature h2 {
   z-index: 100;
@@ -200,6 +205,12 @@ footer nav a {
   width: 100%;
   max-width: 400px;
   line-height: 48px;
+}
+#feature .titleBar {
+  background-color: #f4faf2;
+}
+#feature .titleBar h2 {
+  color: #04304c;
 }
 #feature .bodyCopy {
   background-color: #f4faf2;
@@ -230,8 +241,11 @@ footer nav a {
 #searchWidget svg {
   cursor: pointer;
 }
-#searchWidget svg:hover, #searchWidget svg .active {
+#searchWidget svg:hover {
   fill: #f4faf2;
+}
+#searchWidget li.active svg {
+  fill: #ff002a;
 }
 #searchWidget h3 {
   font-weight: 900;
@@ -269,6 +283,19 @@ footer nav a {
   position: absolute;
   top: -30px;
   right: 30px;
+}
+
+/* map */
+.mapWrap {
+  width: 40vw;
+  height: 40vw;
+  margin: auto;
+}
+@media (max-width: 600px) {
+  .mapWrap {
+    width: 80vw;
+    height: 80vw;
+  }
 }
 
 /**** Pages ****/

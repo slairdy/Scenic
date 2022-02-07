@@ -202,10 +202,17 @@ footer{
     background-repeat:no-repeat;
     background-position:center;
     background-size:cover;
+    height:500px;  
+  }
+  .featureImg, .titleBar{
     display:block;
     width:100%;
-    height:500px;  
+    
     position:relative;
+  }
+  
+  .featureImg.content, .titleBar{
+    height:260px;  
   }
   h2{
     z-index:100;
@@ -219,6 +226,12 @@ footer{
     width:100%;
     max-width:400px;
     line-height:48px;
+  }
+  .titleBar{
+    background-color:$notwhite;
+    h2{
+      color:$navy;
+    }
   }
   .bodyCopy{
     background-color:$notwhite;
@@ -248,9 +261,12 @@ footer{
   max-width:412px;
   svg{
     cursor:pointer;
-    &:hover, .active {
+    &:hover {
       fill:$notwhite;
     }
+  }
+  li.active svg{
+    fill:$red;
   }
   h3{
     font-weight:900;
@@ -288,6 +304,17 @@ footer{
     position:absolute;
     top:-30px;
     right:30px;
+  }
+}
+
+/* map */
+.mapWrap{
+  width:40vw;
+  height:40vw;
+  margin:auto;
+  @media (max-width:600px) {
+    width:80vw;
+    height:80vw;
   }
 }
 

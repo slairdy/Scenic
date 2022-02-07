@@ -1,10 +1,66 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { useParams, render } from 'react-router-dom';
+import { Wrapper, Status } from "@googlemaps/react-wrapper";
 
-function Location (props) {
-  // this one should just be grabbing one location based on props
+import { getLocation } from '../api'
+import { getLocFeatures } from '../api'
+import FeaturedLocation from './FeaturedLocation'
+import LocMap from './LocMap'
+
+function Location () {
+  const [location, setLocation] = useState([])
+  const [features, setFeatures] = useState([])
+  const [errorMessage, setErrorMessage] = useState('')
+
+  let curId = useParams()
+  curId = parseInt(curId.id)
+  
+  useEffect(() => {
+    findLocation()
+  }, [])
+
+  function initMap(latLong) {
+    let locMap = new google.maps.Map(document.getElementById("locMap"), {
+      center: latLong,
+      zoom: 18,
+    })
+    const marker = new google.maps.Marker({
+      position: latLong,
+      map: locMap,
+      icon:{ url: '/images/icons/mapicon.svg',scaledSize: new google.maps.Size(50, 50) }
+    });
+  }
+  
+
+  function findLocation(){
+    return getLocation(curId)
+    .then(location => {
+     setLocation(location)
+     let latLong = String(location.lat_long).split(',')
+     latLong = {
+       lat:parseFloat(latLong[0]),
+       lng:parseFloat(latLong[1])
+     }
+      initMap(latLong)
+
+      return location
+    })
+    .then(location =>{
+      return getLocFeatures(location.id)
+    })
+    .then(features => {
+      setFeatures(features)
+      return null
+    })
+    .catch(err => {
+      setErrorMessage(err.message)
+    })
+  }
+
   return (
     <>
-      <h1>A single location</h1>
+      <FeaturedLocation location={location} features={features} pageType="content" />
+      <LocMap location={location} />
     </>
   )
 }
