@@ -8,11 +8,10 @@ export function getLocations () {
     .catch()
 }
 
-export function getSearchResults (searchquery,featArr) {
+export function getSearchResults (searchquery) {
   return request.post('/v1/search-results')
     .send({
-      searchquery:searchquery,
-      featArr:featArr
+      searchquery:searchquery
     })
     .then(res => {
       return res.body

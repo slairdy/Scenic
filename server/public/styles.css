@@ -47,6 +47,13 @@ body a {
   height: 100%;
 }
 
+.margins {
+  width: 100%;
+  margin: auto;
+  box-sizing: border-box;
+  padding: 0px 60px;
+}
+
 /* Header */
 header {
   position: absolute;
@@ -215,7 +222,8 @@ footer nav a {
 #feature .bodyCopy {
   background-color: #f4faf2;
   border-top: 4px #ff002a solid;
-  padding: 24px 84px 90px 84px;
+  padding-top: 24px;
+  padding-bottom: 90px;
 }
 #feature .readMore {
   font-weight: 900;
@@ -283,6 +291,18 @@ footer nav a {
   position: absolute;
   top: -30px;
   right: 30px;
+}
+
+.noResults {
+  width: 100%;
+  box-sizing: border-box;
+  padding-top: 20px;
+  font-weight: 900;
+  font-size: 20px;
+}
+.noResults a {
+  color: #ff002a;
+  cursor: pointer;
 }
 
 /* map */

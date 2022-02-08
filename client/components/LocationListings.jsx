@@ -14,6 +14,7 @@ return (
         descr={location.descr}
         id={location.id}
         lat_long={location.lat_long}
+        featArr={props.featArr}
         />
       })}
   </div>

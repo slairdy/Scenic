@@ -12,7 +12,7 @@ function FeaturedLocation (props) {
         <SearchWidget />
       </div>
 
-      <div className="bodyCopy">
+      <div className="bodyCopy margins">
         <FeaturesList features={props.features} />
 
         <p>

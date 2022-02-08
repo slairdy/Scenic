@@ -53,13 +53,13 @@ function SearchWidget () {
         })}
       </ul>
 
-      <form action="search-results" id="searchForm">
+      <form action="/search-results" id="searchForm">
         {features.map((feature, i) => {
           return(
             <input key={i} type="hidden" id={'feat-'+feature.id} name={feature.name+feature.id} value="" />
           )
         })}
-        <input placeholder="Search..." type="text" name="searchquery" />
+        <input placeholder="Search..." type="text" name="searchquery" required/>
         <button type="submit">Go &#9654;</button>
       </form>
 

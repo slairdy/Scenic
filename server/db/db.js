@@ -48,30 +48,22 @@ function getFeature (id, db = connection) {
   return db('features').select().where('id', id).first()
 }
 
-//search
-function returnSearch(searchquery,featArr,db = connection){
-  if(searchquery.length){
-    return db('locations')
-    .join(
-      'location_features',
-      'locations.id',
-      '=',
-      'location_features.location_id'
-      )
-    .select('*','location_features.id as lf_id')
-    .where('name', 'like', `%${searchquery}%`)
-    .orWhere('descr', 'like', `%${searchquery}%`)
-    .whereIn('feature_id', featArr)
-  }else{
-    return db('locations')
-    .join(
-      'location_features',
-      'locations.id',
-      '=',
-      'location_features.location_id'
-      )
-    .select('*','location_features.id as lf_id')
-    .whereIn('feature_id', featArr)    
-  }
-
+  //search
+function returnSearch(searchquery,db = connection){
+  return db('locations')
+  .select()
+  .where('name', 'like', `%${searchquery || ''}%`)
+  .orWhere('descr', 'like', `%${searchquery || ''}%`)
 }
+
+//search filter
+// function filterSearch(locId,featArr,db = connection){
+//   return db('location_features')
+//   .select('*')
+//   .whereIn('location_features.feature_id', featArr)
+//   .where('location_features.location_id', locId)
+// }
+
+//SELECT * FROM 'location_features' WHERE feature_id IN (5,2) AND location_id = 1
+  
+  

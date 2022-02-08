@@ -4,18 +4,17 @@ import LocationListings from './LocationListings'
 import TitleBar from './TitleBar'
 import { getFeatures } from '../api'
 import { useSearchParams } from "react-router-dom";
-
+import {filterSearchResults } from '../api'
 
 function SearchResults (props) {
 
   const [locations, setLocations] = useState([])
   const [errorMessage, setErrorMessage] = useState('')
   const [searchParams, setSearchParams] = useSearchParams()
-  const [features, setFeatures] = useState([])
-
+  const [isResults, setisResults] = useState(false)
+  const [featArr, setFeatArr] = useState([])
 
   useEffect(() => {
-    getLocations()
     fetchLocations()
   }, [])
 
@@ -23,20 +22,20 @@ function SearchResults (props) {
   function fetchLocations () {
     return getFeatures()
     .then(features => {
-      setFeatures(features)
+
       const searchquery = searchParams.get("searchquery")
       const feats = features.filter((feature)=>{
         return feature.id === parseInt(searchParams.get(feature.name+feature.id))
       })
-      const featArr = feats.map((feat)=>{
-        return feat.id
-      })
+      setFeatArr(feats.map((feat)=>{return feat.id}))
       console.log(featArr)
-      return getSearchResults(searchquery,featArr)
+      return getSearchResults(searchquery)
+
     })
     .then(locations => {
-        setLocations(locations)
-      return null   
+      if(locations.length>0){setisResults(true)}
+      setLocations(locations)
+      return null
     })
     .catch(err => {
       setErrorMessage(err.message)
@@ -45,8 +44,11 @@ function SearchResults (props) {
 
   return (
     <>
-      <TitleBar name="Search Results" />
-      <LocationListings locations={locations} />
+    <TitleBar name="Search Results" />
+    {isResults
+      ? <LocationListings locations={locations} featArr={featArr} />
+      : <div className="noResults margins">Sorry! No results returned. <a>Try a lucky dip?</a></div>
+    }
     </>
   )
 }

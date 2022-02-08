@@ -20,29 +20,21 @@ router.get('/locations', (req, res) => {
 module.exports = router
 
 router.get('/search-results', (req, res) => {
-  db.getLocations()
-    .then(locations => {
-      res.json(locations)
-      return null
-    })
-    .catch(err => {
-      res.status(500).send(err.message)
-    })
+
 })
 
 router.post('/search-results', (req, res) => {
   const searchquery = req.body.searchquery
   const featArr = req.body.featArr
   db.returnSearch(searchquery, featArr)
-    .then(locations => {
-      res.json(locations)
-      return null
-    })
-    .catch(err => {
-      res.status(500).send(err.message)
-    })
+  .then(locations => {
+    res.json(locations)
+    return null
+  })
+  .catch(err => {
+    res.status(500).send(err.message)
+  })
 })
-
 
 router.get('/features', (req, res) => {
   db.getFeatures()
