@@ -44,7 +44,7 @@ function App () {
         <Route path='locations/:id' element={<Location locations={locations} />} />
         <Route path='search/' element={<Search locations={locations} />} />
         <Route path='search-results' element={<SearchResults locations={locations} />} />
-        <Route path='update-location' element={<UpdateLocation />} />
+        <Route path='update-location/:id' element={<UpdateLocation />} />
         <Route path='search-by-location' element={<SearchByLoc />} />
       </Routes>
       <Footer />

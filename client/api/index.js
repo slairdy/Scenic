@@ -50,3 +50,18 @@ export function getLocation (id) {
     })
     .catch()
 }
+
+export function updateLocation (name,lat_long,descr,id) {
+  return request
+    .post('/v1/update-location/'+id)
+    .send({
+      name:name,
+      descr:descr,
+      lat_long:lat_long,
+      id:id
+    })
+    .then(res => {
+      return res.body
+    })
+    .catch()
+}

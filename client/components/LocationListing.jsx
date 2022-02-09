@@ -11,6 +11,24 @@ function LocationListing (props) {
     callFeatures()
   }, [])
 
+  function hackyPhoto(){
+    let filepath = ''
+    switch (props.id) {
+      case 5:
+      filepath = 'piha_1.png'
+      break;
+      case 3:
+      filepath = 'mteden_1.png'
+      break;
+      case 4:
+      filepath = 'northhead_1.png'
+      break;
+      default:
+        filepath = 'muriwai_1.png'
+    }
+    return filepath
+  }
+
   function callFeatures(){
     return getLocFeatures(props.id)
     .then(feature => {
@@ -36,7 +54,7 @@ function LocationListing (props) {
   return (
     <>
       {filterPass
-        ? <Link to={'/locations/'+props.id} className="locationListing"><img src={"/images/listings/muriwai_1.png"} alt="" /><h4>{props.name}</h4><div className="bodyCopy"><p>{props.descr}</p></div><FeaturesList features={features} /></Link>
+        ? <Link to={'/locations/'+props.id} className="locationListing"><img src={"/images/listings/"+hackyPhoto()} alt="" /><h4>{props.name}</h4><div className="bodyCopy"><p>{props.descr.substring(0, 100) + '...'}</p></div><FeaturesList features={features} /></Link>
         : ""
       }
     </>

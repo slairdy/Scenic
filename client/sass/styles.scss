@@ -204,7 +204,7 @@ footer{
 /* Feature */
 #feature{
   .featureImg{
-    background-image:url($imgpath+'feature/muriwai_1.jpg');
+    // background-image:url($imgpath+'feature/muriwai_1.jpg');
     background-repeat:no-repeat;
     background-position:center;
     background-size:cover;
@@ -331,7 +331,7 @@ footer{
 
 /* map */
 .mapWrap{
-  width:40vw;
+  width:80vw;
   height:40vw;
   margin:auto;
   @media (max-width:600px) {

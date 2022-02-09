@@ -12,6 +12,7 @@ server.use('/v1/', locations)
 
 server.use('/v1/locations/', locations)
 
+
 server.use('/v1/search-results/', locations)
 
 server.use('/v1/*', (req, res) => res.sendStatus(404))

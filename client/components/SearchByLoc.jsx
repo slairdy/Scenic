@@ -7,18 +7,36 @@ import { getLocations } from '../api'
 function SearchByLoc () {
   const [features, setFeatures] = useState([])
   const [errorMessage, setErrorMessage] = useState('')
+  const [userLoc, setuserLoc] = useState({})
 
-  
+
   useEffect(() => {
+    getLocation(),
     findLocations()
   }, [])
 
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position)=>{
+        let obj = {}
+        obj.lat = position.coords.latitude
+        obj.lng = position.coords.longitude
+        setuserLoc(obj)
+      })
+    }else { 
+      alert("can't get your location!")
+    }
+  }
+
   function initMap(locArr) {
+    let initLoc = {lat:-36.8509,lng:174.7645}
     let locMap = new google.maps.Map(document.getElementById("locMap"), {
-      center: {lat:-36.8509,lng:174.7645},
-      zoom: 8,
+      center: initLoc,
+      zoom: 10,
     })
     setMarkers(locMap, locArr)
+    return null  
+
   }
 
   function setMarkers(locMap, locArr){
@@ -57,6 +75,7 @@ function SearchByLoc () {
         }
         locationList.push({latLong,locId:locations[i].id,locName:locations[i].name})
       }
+      getLocation(locationList)
       initMap(locationList)
      return null
     })

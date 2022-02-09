@@ -9,7 +9,9 @@ module.exports = {
   getLocFeatures,
   getFeature,
   getFeatures,
-  returnSearch
+  returnSearch,
+  updateLocation,
+  updatePhoto
 }
 
 //DB functions go here
@@ -56,14 +58,20 @@ function returnSearch(searchquery,db = connection){
   .orWhere('descr', 'like', `%${searchquery || ''}%`)
 }
 
-//search filter
-// function filterSearch(locId,featArr,db = connection){
-//   return db('location_features')
-//   .select('*')
-//   .whereIn('location_features.feature_id', featArr)
-//   .where('location_features.location_id', locId)
-// }
+function updateLocation(name,lat_long,descr,id,db = connection){
+  return db('locations')
+  .update({
+    name: name,
+    lat_long:lat_long,
+    descr:descr
+  })
+  .where('id', id)
+}
 
-//SELECT * FROM 'location_features' WHERE feature_id IN (5,2) AND location_id = 1
-  
-  
+function updatePhoto(db = connection){
+  return db('photos')
+  .update({
+    filepath:'piha_1.png'
+  })
+  .where('id', 7)
+}
