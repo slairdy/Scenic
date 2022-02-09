@@ -1,0 +1,325 @@
+/* Resets & variables */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5 {
+  text-transform: uppercase;
+  margin: 0px;
+}
+
+/* Swatches */
+/* breakpoints */
+/**** Template ****/
+body {
+  background-color: #f4faf2;
+  font-family: "Lato", sans-serif;
+  color: #333333;
+  font-size: 16px;
+  line-height: 30px;
+}
+body a {
+  color: #333333;
+  text-decoration: none;
+}
+
+/* Wrapper */
+.wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.margins {
+  width: 100%;
+  margin: auto;
+  box-sizing: border-box;
+  padding: 0px 60px;
+}
+
+/* Header */
+header {
+  position: absolute;
+  width: 380px;
+  height: 120px;
+  top: 0px;
+  left: 0px;
+}
+header .background {
+  background-color: #a8dadb;
+  width: 380px;
+  height: 120px;
+  position: absolute;
+  -webkit-clip-path: polygon(0 80%, 0 0, 100% 0);
+  clip-path: polygon(0 80%, 0 0, 100% 0);
+  top: 0px;
+  left: 0px;
+  z-index: 6;
+}
+header h1, header h4, header #logo {
+  z-index: 10;
+  position: absolute;
+}
+header h1, header h4 {
+  font-family: "Fugaz One", cursive;
+}
+header h1, header h1 a {
+  color: #ff002a;
+}
+header h1 {
+  font-size: 58px;
+  text-shadow: 2px 4px #04304c;
+  padding: 46px 0px 0px 60px;
+  height: 80px;
+}
+header h4, header h4 a {
+  color: #f4faf2;
+  text-shadow: 1px 1px #04304c;
+}
+header h4 {
+  font-size: 22px;
+  padding: 83px 0px 0px 60px;
+}
+header #logo {
+  width: 52px;
+  height: 41px;
+  background-image: url("/images/hamburger.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  display: block;
+  top: 40px;
+  right: 56px;
+  cursor: pointer;
+}
+
+/* Nav */
+#menu {
+  display: none;
+}
+
+/* Footer */
+footer {
+  padding: 6px;
+  font-size: 14px;
+  background-color: #f4faf2;
+  width: 100%;
+  box-sizing: border-box;
+}
+footer nav {
+  text-align: center;
+  width: 100%;
+  margin: auto;
+  display: block;
+  box-sizing: border-box;
+}
+footer nav a {
+  color: #ff002a;
+  padding: 0px 10px;
+}
+
+/**** Widgets/blocks ****/
+/* Features List/amenities */
+.featureList li {
+  display: inline-block;
+  margin: 0px 10px 0px 0px;
+}
+.featureList li svg {
+  fill: #a8dadb;
+  height: 30px;
+  width: 30px;
+}
+
+/* Location listings */
+.locationListings {
+  background-size: 40px 40px;
+  background-color: #a8dadb;
+  background-image: linear-gradient(to left, #ff002a 1px, transparent 1px), linear-gradient(to top, #ff002a 1px, transparent 1px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 46px;
+  padding: 50px 2vw;
+  width: 100%;
+}
+
+.locationListing {
+  display: block;
+  max-width: 374px;
+  width: 33.33%;
+  background-color: #f4faf2;
+  padding: 33px;
+  filter: drop-shadow(8px 8px #04304c);
+}
+.locationListing h4 {
+  font-weight: 900;
+  font-size: 20px;
+}
+.locationListing ul, .locationListing li {
+  list-style: none;
+}
+.locationListing ul svg, .locationListing li svg {
+  width: 26px;
+  height: 26px;
+}
+.locationListing img {
+  max-width: 100%;
+  border-bottom: 5px #ff002a solid;
+}
+
+/* Feature */
+#feature .featureImg {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 500px;
+}
+#feature .featureImg, #feature .titleBar {
+  display: block;
+  width: 100%;
+  position: relative;
+}
+#feature .featureImg.content, #feature .titleBar {
+  height: 260px;
+}
+#feature h2 {
+  z-index: 100;
+  position: absolute;
+  font-size: 52px;
+  color: #f4faf2;
+  text-shadow: 1px 1px #04304c;
+  font-weight: 900;
+  margin-left: 60px;
+  bottom: 12px;
+  width: 100%;
+  max-width: 400px;
+  line-height: 48px;
+}
+#feature .titleBar {
+  background-color: #f4faf2;
+}
+#feature .titleBar h2 {
+  color: #04304c;
+}
+#feature .bodyCopy {
+  background-color: #f4faf2;
+  border-top: 4px #ff002a solid;
+  padding-top: 24px;
+  padding-bottom: 90px;
+}
+#feature .readMore {
+  font-weight: 900;
+  color: #a8dadb;
+}
+#feature .featureList li svg {
+  height: 38px;
+  width: 38px;
+}
+
+/* Search */
+#searchWidget {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  background-color: #04304c;
+  color: #f4faf2;
+  padding: 22px 30px;
+  text-transform: uppercase;
+  width: 100%;
+  max-width: 412px;
+}
+#searchWidget svg {
+  cursor: pointer;
+}
+#searchWidget svg:hover {
+  fill: #f4faf2;
+}
+#searchWidget li.active svg {
+  fill: #ff002a;
+}
+#searchWidget h3 {
+  font-weight: 900;
+  font-size: 26px;
+}
+#searchWidget input[type=text], #searchWidget button {
+  border: none;
+  color: #f4faf2;
+  padding: 0px 10px;
+  text-transform: uppercase;
+  box-sizing: border-box;
+  height: 30px;
+}
+#searchWidget input[type=text]:focus, #searchWidget button:focus {
+  border: none;
+  outline: none;
+}
+#searchWidget input[type=text] {
+  background: rgba(255, 255, 255, 0.479);
+  width: 76%;
+  text-align: left;
+}
+#searchWidget input::placeholder {
+  color: #f4faf2;
+}
+#searchWidget button {
+  background-color: #ff002a;
+  text-align: right;
+  width: 22%;
+  text-align: center;
+  cursor: pointer;
+}
+#searchWidget .searchByLoc {
+  width: 200px;
+  position: absolute;
+  top: -30px;
+  right: 30px;
+}
+#searchWidget .searchByLoc a {
+  color: #f4faf2;
+}
+
+.noResults {
+  width: 100%;
+  box-sizing: border-box;
+  padding-top: 20px;
+  font-weight: 900;
+  font-size: 20px;
+}
+.noResults a {
+  color: #ff002a;
+  cursor: pointer;
+}
+
+/* map */
+.mapWrap {
+  width: 80vw;
+  height: 40vw;
+  margin: auto;
+}
+@media (max-width: 600px) {
+  .mapWrap {
+    width: 80vw;
+    height: 80vw;
+  }
+}
+
+/**** Pages ****/
+
+/*# sourceMappingURL=styles.css.map */

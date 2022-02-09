@@ -1,16 +1,16 @@
 {
-  "name": "worldwide-routing",
-  "version": "0.2.0",
-  "description": "Using React Router to navigate the globe",
-  "repository": "https://github.com/dev-academy-challenges/worldwide-routing.git",
+  "name": "scenic",
+  "version": "0.0.1",
+  "description": "App to find cool places to park up and eat",
+  "url": "https://github.com/slairdy/Scenic",
   "main": "server/index.js",
   "scripts": {
-    "start": "run-p webpack server",
-    "dev": "run-p client server",
-    "webpack": "webpack --config client/webpack.config.js",
-    "client": "npm run webpack -- --watch",
-    "server": "node server",
-    "test": "jest --watch --noStackTrace",
+    "start": "node server",
+    "test": "jest --watchAll",
+    "dev": "run-p dev:client dev:server",
+    "dev:client": "webpack --watch --config client/webpack.config.js",
+    "dev:server": "nodemon --watch server",
+    "knex": "knex --knexfile server/db/knexfile.js",
     "lint": "eslint --ext .js,.jsx ."
   },
   "babel": {
@@ -37,18 +37,35 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.12.1",
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-react": "^7.12.10",
+    "@testing-library/jest-dom": "^5.11.6",
+    "@testing-library/react": "^11.2.2",
+    "@testing-library/user-event": "^12.6.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^26.6.3",
     "babel-loader": "^8.2.2",
+    "css-loader": "^6.6.0",
     "eslint": "7.9.0",
     "eslint-config-eda": "0.1.4",
     "jest": "^26.6.3",
+    "nodemon": "^2.0.6",
     "npm-run-all": "^4.1.5",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-router-dom": "^6.2.1",
-    "webpack": "^5.12.1",
-    "webpack-cli": "^4.3.1"
+    "superagent": "^6.1.0",
+    "supertest": "^6.0.1",
+    "webpack": "^5.10.3",
+    "webpack-cli": "^4.2.0"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "@babel/register": "^7.12.10",
+    "@googlemaps/react-wrapper": "^1.1.22",
+    "@vscode/sqlite3": "^5.0.7",
+    "draft-js": "^0.11.7",
+    "express": "^4.17.1",
+    "google-map-react": "^2.1.10",
+    "knex": "^1.0.1",
+    "react-navigator-geolocation": "^1.0.8",
+    "sass": "^1.49.7"
   }
 }
