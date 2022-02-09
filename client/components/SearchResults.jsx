@@ -28,7 +28,6 @@ function SearchResults (props) {
         return feature.id === parseInt(searchParams.get(feature.name+feature.id))
       })
       setFeatArr(feats.map((feat)=>{return feat.id}))
-      console.log(featArr)
       return getSearchResults(searchquery)
 
     })
@@ -42,12 +41,24 @@ function SearchResults (props) {
     })
   }
 
+  function luckyDip(event){
+    event.preventDefault()
+    return getLocations()
+    .then(locations =>{
+      const dip = locations[Math.floor(Math.random()*locations.length)].id
+      window.location.href = "/locations/"+dip
+    })
+    .catch(err => {
+      setErrorMessage(err.message)
+    })
+  }
+
   return (
     <>
     <TitleBar name="Search Results" />
     {isResults
       ? <LocationListings locations={locations} featArr={featArr} />
-      : <div className="noResults margins">Sorry! No results returned. <a>Try a lucky dip?</a></div>
+      : <div onClick={(e) => luckyDip(e)} className="noResults margins">Sorry! No results returned. <a>Try a lucky dip?</a></div>
     }
     </>
   )

@@ -41,7 +41,7 @@ function SearchWidget () {
   return (
     <div id="searchWidget">
       
-      <button className="searchByLoc">Search by location &#9654;</button>
+      <button className="searchByLoc"><a href="/search-by-location">Search by location &#9654;</a></button>
       <h3>Find a scenic spot</h3>
       <p>Filter by:</p>
 

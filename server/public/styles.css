@@ -292,6 +292,9 @@ footer nav a {
   top: -30px;
   right: 30px;
 }
+#searchWidget .searchByLoc a {
+  color: #f4faf2;
+}
 
 .noResults {
   width: 100%;

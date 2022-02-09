@@ -21,14 +21,19 @@ function Location () {
 
   function initMap(latLong) {
     let locMap = new google.maps.Map(document.getElementById("locMap"), {
-      center: latLong,
+      center: latLong[0],
       zoom: 18,
     })
-    const marker = new google.maps.Marker({
-      position: latLong,
-      map: locMap,
-      icon:{ url: '/images/icons/mapicon.svg',scaledSize: new google.maps.Size(50, 50) }
-    });
+    for(let i=0;i<latLong.length;i++){
+      return(
+        new google.maps.Marker({
+          position: latLong[0],
+          map: locMap,
+          icon:{ url: '/images/icons/mapicon.svg',scaledSize: new google.maps.Size(50, 50) }
+        })        
+      )
+    }
+
   }
   
 
@@ -37,10 +42,10 @@ function Location () {
     .then(location => {
      setLocation(location)
      let latLong = String(location.lat_long).split(',')
-     latLong = {
+     latLong = [{
        lat:parseFloat(latLong[0]),
        lng:parseFloat(latLong[1])
-     }
+     }]
       initMap(latLong)
 
       return location

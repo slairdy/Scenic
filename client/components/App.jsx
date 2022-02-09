@@ -8,6 +8,8 @@ import Location from './Location'
 import LocationListings from './LocationListings'
 import Search from './Search'
 import SearchResults from './SearchResults'
+import UpdateLocation from './UpdateLocation'
+import SearchByLoc from './SearchByLoc'
 import Footer from './Footer'
 
 import { getLocations } from '../api'
@@ -42,6 +44,8 @@ function App () {
         <Route path='locations/:id' element={<Location locations={locations} />} />
         <Route path='search/' element={<Search locations={locations} />} />
         <Route path='search-results' element={<SearchResults locations={locations} />} />
+        <Route path='update-location' element={<UpdateLocation />} />
+        <Route path='search-by-location' element={<SearchByLoc />} />
       </Routes>
       <Footer />
     </div>

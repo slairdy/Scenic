@@ -19,9 +19,9 @@ router.get('/locations', (req, res) => {
 
 module.exports = router
 
-router.get('/search-results', (req, res) => {
+router.get('/search-results', (req, res) => {})
 
-})
+router.get('/search-by-location', (req, res) => {})
 
 router.post('/search-results', (req, res) => {
   const searchquery = req.body.searchquery
@@ -82,4 +82,3 @@ router.get('/:id', (req, res) => {
       res.status(500).send(err.message)
     })
 })
-
