@@ -1,4 +1,5 @@
 const express = require('express')
+const request = require('superagent')
 
 const db = require('../db/db')
 
@@ -17,9 +18,9 @@ router.get('/locations', (req, res) => {
     })
 })
 
+
 router.get('/update-location/:id', (req, res) => {
   const locId = parseInt(req.params.id)
-  db.updatePhoto()
   db.getLocation(locId)
     .then(location => {
       res.json(location)
@@ -29,6 +30,7 @@ router.get('/update-location/:id', (req, res) => {
       res.status(500).send(err.message)
     })
 })
+
 
 router.post('/update-location/:id', (req, res) => {
   const name = req.body.name
@@ -44,12 +46,46 @@ router.post('/update-location/:id', (req, res) => {
   })
 })
 
+router.post('/create-location', (req, res) => {
+  const name = req.body.name
+  const descr = req.body.descr
+  const lat_long = req.body.lat_long
+  db.createLocation(name,lat_long,descr)
+  .then((newLoc) => {
+    console.log(newLoc)
+    return null
+  })
+  .catch(err => {
+    res.status(500).send(err.message)
+  })
+})
+
+router.get('/delete-location/:id', (req, res) => {
+  const locId = parseInt(req.params.id)
+  db.getLocation(locId)
+    .then(location => {
+      res.json(location)
+      return null
+    })
+    .catch(err => {
+      res.status(500).send(err.message)
+    })
+})
+
+
+router.post('/delete-location/:id', (req, res) => {
+  const id = req.body.id
+  db.deleteLocation(id)
+  .then(() => {
+    return null
+  })
+  .catch(err => {
+    res.status(500).send(err.message)
+  })
+})
+
 
 module.exports = router
-
-router.get('/search-results', (req, res) => {})
-
-router.get('/search-by-location', (req, res) => {})
 
 router.post('/search-results', (req, res) => {
   const searchquery = req.body.searchquery
@@ -64,6 +100,7 @@ router.post('/search-results', (req, res) => {
   })
 })
 
+
 router.get('/features', (req, res) => {
   db.getFeatures()
     .then(features => {
@@ -74,6 +111,7 @@ router.get('/features', (req, res) => {
       res.status(500).send(err.message)
     })
 })
+
 
 router.get('/features/:id', (req, res) => {
   const locId = parseInt(req.params.id)
@@ -86,6 +124,7 @@ router.get('/features/:id', (req, res) => {
       res.status(500).send(err.message)
     })
 })
+
 
 router.get('/featured', (req, res) => {
   db.getFeaturedLoc()
