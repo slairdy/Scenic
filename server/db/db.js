@@ -11,7 +11,9 @@ module.exports = {
   getFeatures,
   returnSearch,
   updateLocation,
-  updatePhoto
+  deleteLocation,
+  createLocation,
+  createPhoto
 }
 
 //DB functions go here
@@ -58,6 +60,7 @@ function returnSearch(searchquery,db = connection){
   .orWhere('descr', 'like', `%${searchquery || ''}%`)
 }
 
+//update
 function updateLocation(name,lat_long,descr,id,db = connection){
   return db('locations')
   .update({
@@ -68,10 +71,30 @@ function updateLocation(name,lat_long,descr,id,db = connection){
   .where('id', id)
 }
 
-function updatePhoto(db = connection){
-  return db('photos')
-  .update({
-    filepath:'piha_1.png'
+//delete
+function deleteLocation(id,db = connection){
+  return db('locations')
+  .select()
+  .where('id', id)
+  .del()
+}
+
+//create
+function createLocation(name,lat_long,descr,id,db = connection){
+  return db('locations')
+  .insert({
+    name: name,
+    lat_long:lat_long,
+    descr:descr
   })
-  .where('id', 7)
+}
+
+//new photo
+function createPhoto(id,db = connection){
+  return db('photos')
+  .insert({
+    location_id: id,
+    filepath:'muriwai_1.png',
+    descr:'photo description'
+  })
 }

@@ -65,3 +65,29 @@ export function updateLocation (name,lat_long,descr,id) {
     })
     .catch()
 }
+
+export function createLocation (name,lat_long,descr) {
+  return request
+    .post('/v1/create-location/')
+    .send({
+      name:name,
+      descr:descr,
+      lat_long:lat_long
+    })
+    .then(res => {
+      return res.body
+    })
+    .catch()
+}
+
+export function deleteLocation (id) {
+  return request
+    .post('/v1/delete-location/'+id)
+    .send({
+      id:id
+    })
+    .then(res => {
+      return res.body
+    })
+    .catch()
+}

@@ -9,6 +9,7 @@ import LocationListings from './LocationListings'
 import Search from './Search'
 import SearchResults from './SearchResults'
 import UpdateLocation from './UpdateLocation'
+import CreateLocation from './CreateLocation'
 import SearchByLoc from './SearchByLoc'
 import Footer from './Footer'
 
@@ -46,6 +47,7 @@ function App () {
         <Route path='search-results' element={<SearchResults locations={locations} />} />
         <Route path='update-location/:id' element={<UpdateLocation />} />
         <Route path='search-by-location' element={<SearchByLoc />} />
+        <Route path='create-location' element={<CreateLocation />} />
       </Routes>
       <Footer />
     </div>

@@ -48,7 +48,6 @@ function LocationListing (props) {
     .catch(err => {
       setErrorMessage(err.message)
     })
-
   }
 
   return (

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, render } from 'react-router-dom';
-import { getLocation } from '../api'
-import { getLocFeatures } from '../api'
-import { updateLocation } from '../api'
+import { getLocation, getFeatures, getLocFeatures, updateLocation, deleteLocation } from '../api'
 import FeaturedLocation from './FeaturedLocation'
+import FeaturesList from './FeaturesList'
 import TitleBar from './TitleBar'
 import LocMap from './LocMap'
 
@@ -65,25 +64,47 @@ function UpdateLocation () {
       setLatLong(latLong[0])
       setLat(latLong[0].lat)
       setLng(latLong[0].lng)
+      getFeatureList(location.id)
       return location
     })
-    .then(location =>{
-      return getLocFeatures(location.id)
-    })
-    .then(features => {
-      setFeatures(features)
-      return null
-    })
+    // .then(location =>{
+    //   return getLocFeatures(location.id)
+    // })
+    // .then(features => {
+    //   setFeatures(features)
+    //   return null
+    // })
     .catch(err => {
       setErrorMessage(err.message)
     })
   }
+
+  function getFeatureList(id){
+    let allFeatures = getFeatures()
+    let selectFeatures = getLocFeatures(id)
+    const currentFeatures = allFeatures.map((curFeat,i)=>{
+     // if(selectFeatures[i] && curFeat[i].id===)
+
+      if(selectFeatures[i] &&curFeat[i].id===selectFeatures[i]){
+        
+      }        
+
+    })
+  }
+
+
 
   function handleSubmit(event){
     event.preventDefault()
     let tidyLatLong = ""+latLat+", "+lngLng+""
     updateLocation(name,tidyLatLong,descr,location.id)
     window.location.href = "/locations/"+location.id
+  }
+
+  function handleDelete(event){
+    event.preventDefault()
+    deleteLocation(location.id)
+    window.location.href = "/"
   }
 
   return (
@@ -96,7 +117,9 @@ function UpdateLocation () {
           <label htmlFor="descr">Update Description:</label><br/>
           <textarea onChange={event => setDescr(event.target.value)} id={location.id+"descr"} name="descr" defaultValue={descr}/><br/><br/>
           <input type="hidden" name="lat_long" value={formLatLong} />
+          {/* <FeaturesList features={features} /> */}
           <button onClick={(e)=>{handleSubmit(e)}} type="submit">Update!</button>
+          <button onClick={(e)=>{handleDelete(e)}}>Delete {name}</button>
         </form>
       </div>
       <LocMap location={location} />
